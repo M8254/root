@@ -14,9 +14,9 @@ global silence_list
 
 silence_list = []
 
-groups = ['g0DzxX805b9b572b16fc3af362c2b8a4']
+groups = ['g0EtNb504c9ce8dbaa29c52898630dbf']
 
-admins = []
+admins = ['u0HNEi70a30f57715ebd2e5b4e55afc9']
 
 filterz = [
     '@',
