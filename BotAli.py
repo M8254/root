@@ -155,8 +155,8 @@ class MessageHandler:
 
 
 async def main() -> None:
-    gaps = ["g0EIy8k0cc2178c050bf873f91de5299"]
-    handlers = {gap: MessageHandler([r".*@.*", r".*https://.*",r".*http://.*", r".*Https://.*", r".*Http://.*"], "u0G9tct0e7656ffc84a0047578dc6e90") for gap in gaps}
+    gaps = ["g0EtNb504c9ce8dbaa29c52898630dbf"]
+    handlers = {gap: MessageHandler([r".*@.*", r".*https://.*",r".*http://.*", r".*Https://.*", r".*Http://.*"], "u0HNEi70a30f57715ebd2e5b4e55afc9") for gap in gaps}
     async with Client(session="Self") as client:
         @client.on_message()
         async def updates(message: Message) -> None:
