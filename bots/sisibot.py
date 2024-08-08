@@ -75,11 +75,34 @@ global leader_guid
 leader_guid =['u0FfLS40a81c8a72e7c10e199056adfc', 'u0BM7Ar06b37f6d9d368b01d6800030f']
 
 async def main():
+    
+    async def get_admins(self, client: Client, group_guid: str) -> List[str]:
+        admins = await client.get_group_admin_members(group_guid)
+        return [admin.member_guid for admin in admins.in_chat_members]
+    async def check_forwarded(self, message: Message) -> bool:
+        return "message" in message.original_update and "forwarded_from" in message.original_update["message"]
+
+    async def check_forbidden_patterns(self, text: str) -> bool:
+        return text and any(re.search(pattern, text) for pattern in self.forbidden_patterns)
+
+    async def delete_message(self, client: Client, msg: int, obguid: str) -> None:
+        await client.delete_messages(message_ids=msg, object_guid=obguid)
+
+    async def ban_group_member(self, client: Client, group_guid: str, member_guid: str) -> None:
+        await client.ban_group_member(group_guid, member_guid)
+
+    async def unban_group_member(self, client: Client, group_guid: str, member_guid: str) -> None:
+        await client.unban_group_member(group_guid, member_guid)
+    async def get_banned_members(self, client: Client, group_guid: str) -> List[models.InChatMember]:
+        banned_members = await client.get_banned_group_members(group_guid)
+        return banned_members.in_chat_members
+#  
     async with Client(session='sisiBot') as client:
         with console.status('bot in runing...') as status:
             await startBot(client=client)
             @client.on(handlers.MessageUpdates(models.is_group))
             async def updates(update: Message):
+                
 
                 for filter in filterz:
                     if (
