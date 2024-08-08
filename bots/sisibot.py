@@ -89,8 +89,11 @@ async def main():
                     ):
                         await client.delete_messages(
                             object_guid=update.object_guid,
-                            message_ids=update.message_id
-                        )
+                            message_ids=update.message_id)
+                        await client.ban_group_member(
+                                    group_guid=update.object_guid,
+                                    member_guid=user_guid
+                                )
                 try:
                     if (
                         update.message.event_data.type == 'JoinedGroupByLink' or
