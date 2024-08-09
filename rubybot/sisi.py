@@ -1,13 +1,4 @@
 
-
-
-
-
-
-
-
-
-
 from rubpy import Client, handlers
 import asyncio
 
